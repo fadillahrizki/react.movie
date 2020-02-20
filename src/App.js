@@ -15,9 +15,9 @@ const App = () => {
         <div className="App">
           <Nav />
           <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/movie" exact component={MovieList} />
-            <Route path="/movie/:id" exact component={DetailMovie} />
+            <Route path="/react.movie/" exact component={Home}/>
+            <Route path="/react.movie/movie" exact component={MovieList} />
+            <Route path="/react.movie/movie/:id" exact component={DetailMovie} />
           </Switch>
         </div>
       </Router>

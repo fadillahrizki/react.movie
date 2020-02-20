@@ -5,11 +5,11 @@ const Nav = () => {
     return(
         <nav className="navbar navbar-dark navbar-expand bg-dark">
             <div className="container">
-                <Link to="/" className="navbar-brand">
+                <Link to="/react.movie/" className="navbar-brand">
                     App
                 </Link>
                 <ul className="ml-auto navbar-nav">
-                    <Link to="/movie" className="nav-item nav-link">
+                    <Link to="/react.movie/movie" className="nav-item nav-link">
                         <li>Movies</li>
                     </Link>
                 </ul>
