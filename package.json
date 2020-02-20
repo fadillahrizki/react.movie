@@ -1,5 +1,5 @@
 {
-  "homepage":"https://fadillahrizki.github.io/react.movie/",
+  "homepage": "https://fadillahrizki.github.io/react.movie/",
   "name": "movie",
   "version": "0.1.0",
   "private": true,
@@ -14,7 +14,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
