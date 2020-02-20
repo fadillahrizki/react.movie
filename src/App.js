@@ -12,14 +12,12 @@ const App = () => {
   return (
     <MovieProvider>
       <Router>
-        <div className="App">
           <Nav />
           <Switch>
             <Route path="/react.movie/" exact component={Home}/>
             <Route path="/react.movie/movie" exact component={MovieList} />
             <Route path="/react.movie/movie/:id" exact component={DetailMovie} />
           </Switch>
-        </div>
       </Router>
     </MovieProvider>
   )
