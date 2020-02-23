@@ -32,7 +32,7 @@ const Nav = () => {
     return(
         <nav className="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
             <div className="container">
-                <Link to="/react.movie" className="navbar-brand">
+                <Link to="" className="navbar-brand">
                     Movieee
                 </Link>
 
@@ -41,10 +41,10 @@ const Nav = () => {
                 </button>
                 <div className="navbar-collapse collapse" id="collapse">
                     <ul className="ml-auto navbar-nav">
-                        <Link to="/react.movie" className={`nav-item nav-link ${(location.pathname == '/react.movie' || location.pathname == '/react.movie/' ) ? 'active' : ''}`}>
+                        <Link to="" className={`nav-item nav-link ${(location.pathname == '' || location.pathname == '/' ) ? 'active' : ''}`}>
                             <li>Home</li>
                         </Link>
-                        <Link to="/react.movie/movie" className={`nav-item nav-link ${(location.pathname == '/react.movie/movie' || location.pathname == '/react.movie/movie/') ? 'active' : ''}`}>
+                        <Link to="/movie" className={`nav-item nav-link ${(location.pathname == '/movie' || location.pathname == '/movie/') ? 'active' : ''}`}>
                             <li>Movies</li>
                         </Link>
                         {/* <li className="nav-item dropdown">
@@ -70,7 +70,7 @@ const Nav = () => {
                             <input className="form-control mx-md-2" type="search" placeholder="Search" value={search} onChange={updateSearch}/>
                             
                                 <button className="btn btn-secondary my-2">
-                                    <Link to="/react.movie/movie">
+                                    <Link to="/movie">
                                         <i className="fa fa-search text-light"></i>
                                     </Link>
                                 </button>

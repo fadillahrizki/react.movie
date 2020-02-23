@@ -35,19 +35,19 @@ const Home = () => {
     const seePopular = async () => {
         setLoading(true)
         setCurr('popular')
-        setDatas(await GET(curr))
+        setDatas(await GET('popular'))
         setLoading(false)
     }
     const seeNowPlaying = async () => {
         setLoading(true)
         setCurr('now_playing')
-        setDatas(await GET(curr))
+        setDatas(await GET('now_playing'))
         setLoading(false)
     }
     const seeUpcoming = async () => {
         setLoading(true)
         setCurr('upcoming')
-        setDatas(await GET(curr))
+        setDatas(await GET('upcoming'))
         setLoading(false)
     }
 

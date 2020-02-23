@@ -26,7 +26,7 @@ const Movie = ({movie,carousel}) =>{
 
     return (
         <div className={`${carousel ? 'col-12' : 'col-lg-2 col-md-3 col-sm-4 col-6 mt-3'}`}>
-            <Link to={`/react.movie/movie/${movie.id}`} style={{textDecoration:'none'}}>
+            <Link to={`/movie/${movie.id}`} style={{textDecoration:'none'}}>
                 <div className="card d-flex justify-content-between text-light card-movie" style={card}>
                     <div className="card-header" style={header}>
                         <span className="text-warning" > <i className="fa fa-star"></i> {movie.vote_average}</span>

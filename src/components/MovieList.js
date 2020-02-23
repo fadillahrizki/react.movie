@@ -63,7 +63,7 @@ const MovieList = () =>{
                 <button className={`btn ${(curr === 'upcoming') ? 'btn-secondary' : 'btn-outline-secondary'} mr-3 mt-3 mt-md-0`} onClick={Upcoming}>Upcoming</button>
 
                 {(curr === 'search') ? (
-                    <button className="btn btn-secondary">Total Results : {datas.total_results}</button>
+                    <button className="btn btn-secondary mr-3 mt-3 mt-md-0">Total Results : {datas.total_results}</button>
                 ):''}
 
                 <div className="btn-group ml-auto col-12 col-md-2 mt-3 mt-md-0">
