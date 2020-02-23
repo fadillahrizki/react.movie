@@ -1,18 +1,17 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import {MovieContext} from './MovieContext'
-import {NEXT_PAGE,PREV_PAGE} from '../api/Movie'
+import {NEXT_PAGE,PREV_PAGE,GET} from '../api/Movie'
 import Movie from './Movie'
-import Search from './Search'
 
 const MovieList = () =>{
-    const [datas,setDatas,isLoading,setLoading,search] = useContext(MovieContext)
+    const [datas,setDatas,isLoading,setLoading,search,setSearch,curr,setCurr] = useContext(MovieContext)
     
     const PrevPage = async () => {
         setLoading(true)
         if(search !== ''){
-            setDatas(await PREV_PAGE(datas.page,search))
+            setDatas(await PREV_PAGE(datas.page,curr,search))
         }else{
-            setDatas(await PREV_PAGE(datas.page))
+            setDatas(await PREV_PAGE(datas.page,curr))
         } 
         setLoading(false)
     }
@@ -20,21 +19,67 @@ const MovieList = () =>{
     const NextPage = async () => {
         setLoading(true)
         if(search !== ''){
-            setDatas(await NEXT_PAGE(datas.page,search))
+            setDatas(await NEXT_PAGE(datas.page,curr,search))
         }else{
-            setDatas(await NEXT_PAGE(datas.page))
+            setDatas(await NEXT_PAGE(datas.page,curr))
         }
+        setLoading(false)
+    }
+
+    const Popular = async () => {
+        setCurr('popular')
+        setLoading(true)
+        setDatas(await GET('popular'))
+        setLoading(false)
+    }
+
+    const NowPlaying = async () => {
+        setCurr('now_playing')
+        setLoading(true)
+        setDatas(await GET('now_playing'))
+        setLoading(false)
+    }
+
+    const Upcoming = async () => {
+        setCurr('upcoming')
+        setLoading(true)
+        setDatas(await GET('upcoming'))
+        setLoading(false)
+    }
+
+    const Discover = async () => {
+        setCurr('discover')
+        setLoading(true)
+        setDatas(await GET('discover'))
         setLoading(false)
     }
 
     return (
         <div className="container">
-            <div className="row pt-5">
-                <div className="col-lg-12">
-                    <Search />
+            <div className="row p-3">
+                <button className={`btn ${(curr === 'discover') ? 'btn-secondary' : 'btn-outline-secondary'} mr-3 mt-3 mt-md-0`} onClick={Discover}>Discover</button>
+                <button className={`btn ${(curr === 'popular') ? 'btn-secondary' : 'btn-outline-secondary'} mr-3 mt-3 mt-md-0`} onClick={Popular}>Popular</button>
+                <button className={`btn ${(curr === 'now_playing') ? 'btn-secondary' : 'btn-outline-secondary'} mr-3 mt-3 mt-md-0`} onClick={NowPlaying}>Now Playing</button>
+                <button className={`btn ${(curr === 'upcoming') ? 'btn-secondary' : 'btn-outline-secondary'} mr-3 mt-3 mt-md-0`} onClick={Upcoming}>Upcoming</button>
+
+                {(curr === 'search') ? (
+                    <button className="btn btn-secondary">Total Results : {datas.total_results}</button>
+                ):''}
+
+                <div className="btn-group ml-auto col-12 col-md-2 mt-3 mt-md-0">
+                    {(datas && datas.page > 1) ? (
+                        <button className="btn btn-outline-secondary" onClick={PrevPage}>&laquo;</button>
+                    ) : ''}
+                    <button className="btn btn-secondary" disabled>{(datas) ? `${datas.page} of ${datas.total_pages}` : '1'}</button>
+                    {
+                    (datas && datas.page < datas.total_pages) ? (
+                        <button className="btn btn-outline-secondary" onClick={NextPage}>&raquo;</button>
+                    ): ''   
+                    }
                 </div>
+
             </div>
-            <div className="row py-5">
+            <div className="row pb-3">
                 {
                 (isLoading) ? (
                     <div className="container">
@@ -48,30 +93,11 @@ const MovieList = () =>{
                     </div>
                 )    :
                 
-                (datas.total_results > 0) ?    
-                [
-                    (
-                        <div className="container" key='App'>
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <h2>Results : {datas.total_results}</h2>
-                                    <h2>Total Pages : {datas.total_pages}</h2>
-                                </div>
-                                <div className="col-lg-6 btn-group">
-                                    <button className="btn btn-outline-info" onClick={PrevPage} disabled={`${(datas.page === 1) ? 'disable' : ''}`} >Previous Page</button>
-                                    <button className="btn btn-info" disabled>{datas.page}</button>
-                                    <button className="btn btn-outline-info" onClick={NextPage} disabled={`${(datas.page === datas.total_pages) ? 'disable' : ''}`}>Next Page</button>
-                                </div>
-                            </div>
-                        </div>
-                    ),
-
+                (datas.total_results > 0) ?(
                     datas.results.map(movie => (
                         <Movie  movie={movie} key={movie.id} />
                     ))
-                ]
-
-                : (
+                ): (
                     <div className="container">
                         <div className="row mt-3">
                             <div className="col-lg-12 text-center">
@@ -80,8 +106,12 @@ const MovieList = () =>{
                         </div>
                     </div>
                 )
-
+                
                 }
+
+                <div className="row">
+
+                </div>
             </div>
         </div>
     )

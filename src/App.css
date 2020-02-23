@@ -1,4 +1,16 @@
+html{
+  scroll-behavior: smooth;
+}
 .detail{
   transform:translateY(-250px);
   padding:0 40px;
 }
+
+.card-movie{
+  text-decoration: none;
+}
+
+.card-movie:hover{
+  box-shadow: 0 0 12px grey;
+}
+
