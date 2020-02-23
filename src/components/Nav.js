@@ -32,7 +32,7 @@ const Nav = () => {
     return(
         <nav className="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
             <div className="container">
-                <Link to="" className="navbar-brand">
+                <Link to="/" className="navbar-brand">
                     Movieee
                 </Link>
 
@@ -41,7 +41,7 @@ const Nav = () => {
                 </button>
                 <div className="navbar-collapse collapse" id="collapse">
                     <ul className="ml-auto navbar-nav">
-                        <Link to="" className={`nav-item nav-link ${(location.pathname == '' || location.pathname == '/' ) ? 'active' : ''}`}>
+                        <Link to="/" className={`nav-item nav-link ${(location.pathname == '' || location.pathname == '/' ) ? 'active' : ''}`}>
                             <li>Home</li>
                         </Link>
                         <Link to="/movie" className={`nav-item nav-link ${(location.pathname == '/movie' || location.pathname == '/movie/') ? 'active' : ''}`}>
