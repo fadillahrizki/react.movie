@@ -61,9 +61,6 @@ const DetailMovie = ({match}) =>{
                     items:6
                 },
             },
-            autoplay:true,
-            autoplayTimeout:2000,
-            autoplayHoverPause:true
         })
     })  
     
@@ -189,20 +186,22 @@ const DetailMovie = ({match}) =>{
                     </div>
                 </div>
             </div>
+            {similar ? similar.results.length > 0 ? (
             <div className="row-fluid mt-3">
                 <div className="card">
                     <div className="card-body">
                         <h5>Similar Movies</h5>
                         <div className="row owl-carousel">
-                            {similar ? (
+                            {
                                 similar.results.map(result => (
                                     <Movie movie={result} key={result.id} carousel={true}/>
                                 ))
-                            ) : ''}
+                            }
                         </div>
                     </div>
                 </div>
             </div>
+            ):'' : ''}   
         </div>
         </>
     )

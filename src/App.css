@@ -14,3 +14,45 @@ html{
   box-shadow: 0 0 12px grey;
 }
 
+.bg-banner{
+  background:#333;
+  width:50%;
+  height:100%;
+  position:absolute;
+  top:0;
+  right:0;
+  opacity: .8;
+}
+
+.banner-content{
+  width:50%;
+  height:100%;
+  position:absolute;
+  top:0;
+  right:0;
+  color:#fff;
+}
+
+.navigator{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.navigator .btn{
+  padding:40px;
+  font-size: 40px;
+}
+
+@media (max-width:768px){
+  .bg-banner{
+    width:100%;
+  }
+  .banner-content{
+    width: 100%;
+  }
+  .navigator{
+    display: none;
+  }
+}
