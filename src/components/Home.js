@@ -5,6 +5,7 @@ import {GET} from '../api/Movie'
 import {MovieContext} from './MovieContext'
 import MovieBanner from './MovieBanner'
 
+
 const Home = () => {
     const [datas,setDatas,isLoading,setLoading,search,setSearch,curr,setCurr] = useContext(MovieContext)
     const [popular,setPopular] = useState()
@@ -79,20 +80,6 @@ const Home = () => {
             },
         })
     })  
-
-    if(isLoading){
-        return(
-            <div className="container">
-                <div className="row mt-3">
-                    <div className="col-lg-12 text-center">
-                        <div className="spinner-border text-info" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
 
     return(
         <> 

@@ -3,6 +3,7 @@ import {Link,withRouter,useLocation} from 'react-router-dom'
 import {GET_GENRES} from '../api/Movie'
 import {MovieContext} from './MovieContext'
 import {SEARCH} from '../api/Movie'
+import Loading from 'react-loading-bar'
 
 const Nav = () => {
     const location = useLocation()
@@ -12,6 +13,7 @@ const Nav = () => {
     const getGenres = async () => {
         setGenres(await GET_GENRES())
     }
+    
 
     useEffect(()=>{
         getGenres()
@@ -30,6 +32,7 @@ const Nav = () => {
     }
 
     return(
+        <>
         <nav className="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
             <div className="container">
                 <Link to="/" className="navbar-brand">
@@ -47,24 +50,6 @@ const Nav = () => {
                         <Link to="/movie" className={`nav-item nav-link ${(location.pathname == '/movie' || location.pathname == '/movie/') ? 'active' : ''}`}>
                             <li>Movies</li>
                         </Link>
-                        {/* <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Genres</a>
-                            <div className="dropdown-menu dropdown-menu-right" style={{width:'500px'}}>
-                                <div className="container">
-                                    <div className="row">
-                                    {
-                                        (genres) ? 
-                                            genres.genres.map(genre => (
-                                                <div className="col-lg-4" key={genre.id}>
-                                                    <a className="d-inline-block btn btn-dark w-100 mb-3" href="#">{genre.name}</a>
-                                                </div>
-                                            ))
-                                            : ''
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </li> */}
                     </ul>
                         <form className="form-inline" onSubmit={searchMovies}>
                             <input className="form-control mx-md-2" type="search" placeholder="Search" value={search} onChange={updateSearch}/>
@@ -79,6 +64,8 @@ const Nav = () => {
                 </div>
             </div>
         </nav>
+        <Loading show={isLoading} color="red" showSpinner={true}/>
+        </>
     )
 }
 
